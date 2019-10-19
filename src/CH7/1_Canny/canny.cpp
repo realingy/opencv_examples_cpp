@@ -8,14 +8,13 @@ using namespace cv;
 int main()
 {
 	Mat srcImage = imread(MediaPath + "orange.jpg");
-	Mat srcImage1 = srcImage.clone();
 
 	imshow("【原始图】Canny边缘检测", srcImage); 
 
 	Mat dstImage,edge,grayImage;
 
-	dstImage.create( srcImage1.size(), srcImage1.type() );
-	cvtColor( srcImage1, grayImage, COLOR_BGR2GRAY );
+	dstImage.create( srcImage.size(), srcImage.type() );
+	cvtColor( srcImage, grayImage, COLOR_BGR2GRAY );
 
 	// 先用使用3x3内核来降噪
 	blur( grayImage, edge, Size(3,3) );
@@ -27,7 +26,7 @@ int main()
 	dstImage = Scalar::all(0);
 
 	// 使用Canny算子输出的边缘图g_cannyDetectedEdges作为掩码，来将原图g_srcImage拷到目标图g_dstImage中
-	srcImage1.copyTo(dstImage, edge);
+	srcImage.copyTo(dstImage, edge);
 
 	imshow("【效果图】Canny边缘检测", dstImage); 
 
