@@ -4,15 +4,16 @@
 #include "opencv2/photo.hpp"
 #include <iostream>
 #include "path.h"
+
 using namespace cv;
 using namespace std;
 
-#define WINDOW_NAME0 "【原始图参考】"       //为窗口标题定义的宏 
-#define WINDOW_NAME1 "【原始图】"			//为窗口标题定义的宏 
-#define WINDOW_NAME2 "【修补后的效果图】"   //为窗口标题定义的宏 
+#define WINDOW_NAME0 "【原始图参考】" //为窗口标题定义的宏 
+#define WINDOW_NAME1 "【原始图】" //为窗口标题定义的宏 
+#define WINDOW_NAME2 "【修补后的效果图】" //为窗口标题定义的宏 
 
 Mat srcImage0,srcImage1, inpaintMask;
-Point previousPoint(-1,-1);//原来的点坐标
+Point previousPoint(-1,-1); //原来的点坐标
 
 static void On_Mouse( int event, int x, int y, int flags, void* )
 {
@@ -36,13 +37,15 @@ static void On_Mouse( int event, int x, int y, int flags, void* )
 	}
 }
 
-int main( int argc, char** argv )
+int main(int argc, char** argv)
 {
-	system("color 2F"); 
-
 	//载入原始图并进行掩膜的初始化
 	Mat srcImage = imread(MediaPath+"inpaint.jpg", -1);
-	if(!srcImage.data ) { printf("读取图片错误！\n"); return false; } 
+	if(!srcImage.data)
+	{
+		printf("读取图片错误！\n");
+		return false;
+	}
 
 	srcImage0 = srcImage.clone();
 	srcImage1 = srcImage.clone();
@@ -84,3 +87,4 @@ int main( int argc, char** argv )
 
 	return 0;
 }
+

@@ -8,7 +8,11 @@ using namespace std;
 
 int main( int argc, char** argv )
 {
-	Mat srcImage=imread(MediaPath+"findContours.jpg", 0);
+	Mat srcImage = imread(MediaPath+"findContours.jpg", 0);
+	if (!srcImage.data) {
+		cout << "打开图像错误!\n";
+		return -1;
+	}
 	imshow("原始图",srcImage);
 
 	Mat dstImage = Mat::zeros(srcImage.rows, srcImage.cols, CV_8UC3);
@@ -20,11 +24,10 @@ int main( int argc, char** argv )
 	vector<Vec4i> hierarchy;
 
 	// 查找轮廓
-	findContours( srcImage, contours, hierarchy,RETR_CCOMP, CHAIN_APPROX_SIMPLE );
+	findContours(srcImage, contours, hierarchy, RETR_CCOMP, CHAIN_APPROX_SIMPLE);
 
 	// 遍历所有顶层的轮廓， 以随机颜色绘制出每个连接组件颜色
-	int index = 0;
-	for( ; index >= 0; index = hierarchy[index][0] )
+	for(int index = 0; index >= 0; index = hierarchy[index][0] )
 	{
 		Scalar color( rand()&255, rand()&255, rand()&255 );
 		drawContours( dstImage, contours, index, color, FILLED, 8, hierarchy );

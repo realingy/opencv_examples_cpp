@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-	system("color 1F"); 
+	// system("color 1F"); 
 
 	Mat image(600, 600, CV_8UC3);
 	RNG& rng = theRNG();

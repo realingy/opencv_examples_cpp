@@ -1,9 +1,11 @@
 #include "opencv2/imgproc.hpp"
 #include "opencv2/highgui.hpp"
 #include <iostream>
+
+#include "path.h"
+
 using namespace cv;
 using namespace std;
-#include "path.h"
 
 #define WINDOW_NAME "【程序窗口】"
 
@@ -15,16 +17,19 @@ void on_Threshold( int, void* );//回调函数
 
 int main( )
 {
-	system("color 1F"); 
+	// system("color 1F"); 
 
 	g_srcImage = imread(MediaPath + "lake.jpg");
-	if(!g_srcImage.data ) { printf("读取图片错误，请确定目录下是否有imread函数指定的图片存在~！ \n"); return false; }  
+	if(!g_srcImage.data ) { 
+		printf("读取图片错误！ \n");
+		return -1;
+	}  
 
 	imshow("原始图",g_srcImage);
 
-	cvtColor( g_srcImage, g_grayImage, COLOR_RGB2GRAY );
+	cvtColor( g_srcImage, g_grayImage, CV_RGB2GRAY );
 
-	namedWindow( WINDOW_NAME, WINDOW_AUTOSIZE );
+	// namedWindow( WINDOW_NAME, WINDOW_AUTOSIZE );
 
 	createTrackbar( "模式", WINDOW_NAME, &g_nThresholdType, 4, on_Threshold );
 	createTrackbar( "参数值", WINDOW_NAME, &g_nThresholdValue, 255, on_Threshold );
@@ -50,3 +55,4 @@ void on_Threshold( int, void* )
 
 	imshow( WINDOW_NAME, g_dstImage );
 }
+

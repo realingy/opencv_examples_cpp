@@ -16,16 +16,14 @@ static void on_Mouse( int event, int x, int y, int flags, void* );
 
 int main( int argc, char** argv )
 {	
-	system("color 6F"); 
-
 	g_srcImage = imread(MediaPath+"watershed.jpg", 1);
 	imshow( WINDOW_NAME1, g_srcImage );
 
 	Mat srcImage,grayImage;
 
 	g_srcImage.copyTo(srcImage);
-	cvtColor(g_srcImage, g_maskImage, COLOR_BGR2GRAY);
-	cvtColor(g_maskImage, grayImage, COLOR_GRAY2BGR);
+	cvtColor(g_srcImage, g_maskImage, CV_BGR2GRAY);
+	cvtColor(g_maskImage, grayImage, CV_GRAY2BGR);
 	g_maskImage = Scalar::all(0);
 
 	// 设置鼠标回调函数

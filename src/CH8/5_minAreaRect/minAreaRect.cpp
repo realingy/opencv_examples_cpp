@@ -1,12 +1,13 @@
 // 创建包围轮廓的矩形边界
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
+
 using namespace cv;
 using namespace std;
 
-int main(  )
+int main()
 {
-	system("color 1F"); 
+	// system("color 1F"); 
 
 	Mat image(600, 600, CV_8UC3);
 	RNG& rng = theRNG();
@@ -34,12 +35,13 @@ int main(  )
 
 		//绘制出随机颜色的点
 		image = Scalar::all(0);
-		for( int i = 0; i < count; i++ )
+		for(int i = 0; i < count; i++)
 			circle( image, points[i], 3, Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255)), FILLED, LINE_AA );
 
 		//绘制出最小面积的包围矩形
-		for( int i = 0; i < 4; i++ )
+		for (int i = 0; i < 4; i++) {
 			line(image, vertex[i], vertex[(i+1)%4], Scalar(100, 200, 211), 2, LINE_AA);
+		}
 
 		//显示窗口
 		imshow("矩形包围示例", image);
