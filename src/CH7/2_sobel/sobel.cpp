@@ -5,6 +5,17 @@
 
 using namespace cv;
 
+//第一步、分别在x和y两个方向上求导
+//第二步、检测水平方向上的边缘，内核为
+//[-1  0 +1]
+//[-2  0 +2]
+//[-1  0 +1]
+//第三步、检测垂直方向上的边缘，内核为
+//[-1 -2 -1]
+//[ 0  0  0]
+//[+1 +2 +1]
+//第四步、合并梯度
+
 int main()
 {
 	Mat grad_x, grad_y;
@@ -14,7 +25,7 @@ int main()
 
 	imshow("【原始图】sobel边缘检测", src); 
 
-	// 求 X方向梯度
+	// 求X方向梯度
 	Sobel( src, grad_x, CV_16S, 1, 0, 3, 1, 1, BORDER_DEFAULT );
 	convertScaleAbs( grad_x, abs_grad_x );
 	imshow("【效果图】 X方向Sobel", abs_grad_x); 
@@ -31,3 +42,6 @@ int main()
 	waitKey(0); 
 	return 0; 
 }
+
+
+

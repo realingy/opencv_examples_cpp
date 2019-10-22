@@ -5,6 +5,16 @@
 using namespace cv;
 using namespace std;
 
+//霍夫线变换进行线检测
+/********************************************************************************************
+void HoughLines(InputArray image, //输入图像，8位单通道的二值图像；输入图像可能被函数修改。
+	OutputArray lines, //直线的输出向量，每一条直线由两个元素的向量（rho,theta）表示
+	double rho, double theta, //直线搜索时的步进尺寸
+	int threshold, //最小投票数
+	double srn = 0, double stn = 0, //默认
+	double min_theta = 0, double max_theta = CV_PI); //默认
+********************************************************************************************/
+
 int main()
 {
 	Mat srcImage = imread(MediaPath + "cbd.jpg");
@@ -12,11 +22,11 @@ int main()
 
 	Mat midImage, dstImage;
 
-	Canny(srcImage, midImage, 50, 200, 3);//进行一此canny边缘检测
-	cvtColor(midImage, dstImage, COLOR_GRAY2BGR);//转化边缘检测后的图为灰度图
+	Canny(srcImage, midImage, 50, 200, 3); //进行一此canny边缘检测
+	cvtColor(midImage, dstImage, CV_GRAY2BGR); //转化边缘检测后的图为灰度图
 
 	// 进行霍夫线变换
-	vector<Vec2f> lines;//定义一个矢量结构lines用于存放得到的线段矢量集合
+	vector<Vec2f> lines; //定义一个矢量结构lines用于存放得到的线段矢量集合
 	HoughLines(midImage, lines, 1, CV_PI/180, 150, 0, 0);
 
 	// 依次在图中绘制出每条线段
@@ -37,7 +47,7 @@ int main()
 
 	imshow("【效果图】", dstImage);  
 
-	waitKey(0);  
+	waitKey(0);
 
 	return 0;  
 }

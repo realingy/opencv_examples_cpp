@@ -6,14 +6,14 @@
 using namespace cv;
 using namespace std;
 
-#define WINDOW_NAME "【程序窗口】"        //为窗口标题定义的宏 
+#define WINDOW_NAME "【程序窗口】" //为窗口标题定义的宏 
 
-double area;//轮廓面积
-int g_nThresholdValue = 131;//二值化阈值
+double area; //轮廓面积
+int g_nThresholdValue = 131; //二值化阈值
 int g_nThresholdType = 3;
-double minarea = 378;//目标轮廓最小像素点个数
-double maxarea = 478;//目标轮廓最大像素点个数
-Moments mom; // 轮廓矩  
+double minarea = 378; //目标轮廓最小像素点个数
+double maxarea = 478; //目标轮廓最大像素点个数
+Moments mom; //轮廓矩  
 
 Mat image, gray, edge, dst, g_srcImage1, dst1, g_srcImage, g_grayImage, g_dstImage;
 
@@ -35,7 +35,7 @@ int main()
 
 	cvtColor(g_srcImage, g_grayImage, COLOR_RGB2GRAY);//灰度转换
 
-	namedWindow(WINDOW_NAME, WINDOW_AUTOSIZE);
+	namedWindow(WINDOW_NAME, WINDOW_NORMAL);
 
 	createTrackbar("模式",
 		WINDOW_NAME, &g_nThresholdType,//二值化模式
@@ -65,6 +65,8 @@ void on_Threshold(int, void*)
 	Mat xx;
 	threshold(g_grayImage, g_dstImage, g_nThresholdValue, 255, CV_THRESH_BINARY);
 	resize(g_dstImage, xx, Size(1000, 500));
+
+	namedWindow("二值图", WINDOW_NORMAL);
 	imshow("二值图", xx);
 
 	//resize(g_dstImage, g_srcImage1, Size(g_dstImage.cols / 4, g_dstImage.rows / 4), 0, 0, INTER_LINEAR);
@@ -131,4 +133,7 @@ void on_Threshold(int, void*)
 
 	//imwrite("s_pos71_run7_img190.jpg", g_srcImage);
 }
+
+
+
 

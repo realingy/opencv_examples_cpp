@@ -13,7 +13,7 @@ int main()
 	Mat midImage,dstImage;
 
 	Canny(srcImage, midImage, 50, 200, 3); //进行一此canny边缘检测
-	cvtColor(midImage,dstImage, COLOR_GRAY2BGR); //转化边缘检测后的图为灰度图
+	cvtColor(midImage,dstImage, CV_GRAY2BGR); //转化边缘检测后的图为灰度图
 
 	// 进行霍夫线变换
 	vector<Vec4i> lines; //定义一个矢量结构lines用于存放得到的线段矢量集合
