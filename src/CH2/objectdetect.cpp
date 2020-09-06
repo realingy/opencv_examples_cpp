@@ -22,7 +22,7 @@ cv::CascadeClassifier eyes_cascade;
 string window_name = "Capture - Face detection";
 cv::RNG rng(12345);
 
-int main(void) {
+int main(int argc, char *argv[]) {
   cv::VideoCapture capture;
   cv::Mat frame;
 
