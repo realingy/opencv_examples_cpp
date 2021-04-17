@@ -5,6 +5,7 @@
 #include "path.h"
 using namespace cv;
 
+/*
 int main()
 {
 	Mat srcImage, dstImage;
@@ -38,4 +39,5 @@ int main()
 
 	return 0;
 }
+*/
 

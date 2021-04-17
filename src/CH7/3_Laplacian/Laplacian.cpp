@@ -28,6 +28,8 @@ int main()
 
 	imshow("¡¾Ð§¹ûÍ¼¡¿Í¼ÏñLaplace±ä»»", abs_dst);
 
+	imwrite("laplace.jpg", abs_dst);
+
 	waitKey(0); 
 
 	return 0; 

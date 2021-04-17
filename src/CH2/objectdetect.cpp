@@ -15,10 +15,12 @@ cv::String face_cascade_name =
 cv::String eyes_cascade_name =
     "D:\\project_opencv\\CH2\\objectdetect\\objectdetect\\haarcascade_eye_tree_"
     "eyeglasses.xml";
+
 // String face_cascade_name = "haarcascade_frontalface_alt.xml";
 // String eyes_cascade_name = "haarcascade_eye_tree_eyeglasses.xml";
 cv::CascadeClassifier face_cascade;
 cv::CascadeClassifier eyes_cascade;
+
 string window_name = "Capture - Face detection";
 cv::RNG rng(12345);
 
