@@ -1,3 +1,5 @@
+#include <glog/logging.h>
+
 #include <opencv2/core.hpp>
 #include <opencv2/opencv.hpp>
 
@@ -6,6 +8,7 @@ int main(int argc, char *argv[]) {
   cv::Mat img = cv::imread(path);
   if (nullptr == img.data) {
     std::cout << "open image error!";
+    LOG(INFO) << "open image error!";
   }
   cv::imshow("src", img);
   cv::waitKey(0);
